@@ -1,7 +1,7 @@
 "use client";
 
 import { getUser } from "@/actions/auth/getUser";
-import { User } from "@/types/auth/User";
+import { User } from "@/types/User";
 import { useEffect, useState } from "react";
 
 const useAuth = () => {
