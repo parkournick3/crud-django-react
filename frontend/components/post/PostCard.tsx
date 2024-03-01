@@ -1,10 +1,15 @@
 import useAuth from "@/hooks/useAuth";
 import usePosts from "@/hooks/usePosts";
 import { Post } from "@/types/Post";
-import dayjs from "dayjs";
 import { EditIcon, TrashIcon, UserIcon } from "lucide-react";
 import { useState } from "react";
 import PostUpdateDialog from "./PostUpdateDialog";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
+dayjs.extend(relativeTime);
 
 type Props = {
   post: Post;
@@ -20,7 +25,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
       <PostUpdateDialog
         open={isEditing}
         onClose={() => setIsEditing(!isEditing)}
-        id={post.id}
+        post={post}
       />
 
       <div className="card w-full max-w-xl bg-base-300 shadow-xl">
@@ -65,15 +70,9 @@ const PostCard: React.FC<Props> = ({ post }) => {
           <p className="text-sm font-semibold px-4">
             {dayjs(post.updated_datetime).format("YYYY/MM/DD HH:mm:ss") ===
             dayjs(post.created_datetime).format("YYYY/MM/DD HH:mm:ss") ? (
-              <span>
-                Created:{" "}
-                {dayjs(post.created_datetime).format("YYYY/MM/DD HH:mm")}
-              </span>
+              <span>Created {dayjs(post.created_datetime).fromNow()}</span>
             ) : (
-              <span>
-                Updated:{" "}
-                {dayjs(post.updated_datetime).format("YYYY/MM/DD HH:mm")}
-              </span>
+              <span>Updated {dayjs(post.updated_datetime).fromNow()}</span>
             )}
           </p>
         </div>

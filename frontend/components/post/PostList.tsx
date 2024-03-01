@@ -1,9 +1,10 @@
 import usePosts from "@/hooks/usePosts";
 import PostCard from "./PostCard";
 import { Post } from "@/types/Post";
+import classNames from "classnames";
 
 const PostList = () => {
-  const { posts, isLoading } = usePosts();
+  const { posts, isLoading, loadMore, isReachingEnd } = usePosts();
 
   if (isLoading) {
     return (
@@ -16,6 +17,17 @@ const PostList = () => {
       {posts?.map((post: Post) => (
         <PostCard key={post.title + post.username + post.id} post={post} />
       ))}
+
+      <button
+        disabled={isReachingEnd}
+        className={classNames(
+          "btn btn-primary",
+          isReachingEnd && "btn-disabled"
+        )}
+        onClick={loadMore}
+      >
+        Load more
+      </button>
     </div>
   );
 };

@@ -3,12 +3,22 @@ from .serializers import PostSerializer, PostSerializerUpdate
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
+from django.core.paginator import Paginator, EmptyPage
 
 @api_view(['GET', 'POST'])
 def post_list(request, format=None):
     if request.method == 'GET':
         posts = Post.objects.all().order_by('-created_datetime')
-        serializer = PostSerializer(posts, many=True)
+        
+        paginated = Paginator(posts, request.GET.get('per_page', 10))
+        page_number = request.GET.get('page', 1)
+
+        try:
+            page = paginated.page(page_number)
+        except EmptyPage:
+            return Response({'error': 'The page does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PostSerializer(page.object_list, many=True)
         return Response(serializer.data)
 
     if request.method == 'POST':

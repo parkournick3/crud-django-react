@@ -2,17 +2,18 @@ import { Field, Form, Formik } from "formik";
 import classNames from "classnames";
 import { PostUpdateSchema } from "@/validations/post";
 import usePosts from "@/hooks/usePosts";
+import { Post } from "@/types/Post";
 
 const PostUpdateDialog = ({
-  id,
+  post,
   open,
   onClose,
 }: {
-  id: number;
+  post: Post;
   open: boolean;
   onClose: () => void;
 }) => {
-  const { updatePost } = usePosts(id);
+  const { updatePost } = usePosts(post.id);
 
   return (
     <dialog
@@ -24,7 +25,7 @@ const PostUpdateDialog = ({
       <div className="modal-box">
         <Formik
           validationSchema={PostUpdateSchema}
-          initialValues={{ title: "", content: "" }}
+          initialValues={{ title: post.title, content: post.content }}
           onSubmit={(values, actions) => {
             actions.resetForm();
             updatePost(values);
