@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/general/Footer";
 import PostCreateForm from "@/components/post/PostCreateForm";
 import PostList from "@/components/post/PostList";
 import useAuth from "@/hooks/useAuth";
@@ -21,9 +22,11 @@ const Home = () => {
   }
 
   return (
-    <main>
+    <main className="flex flex-col min-h-screen h-full">
       <PostCreateForm />
       <PostList />
+
+      <Footer />
     </main>
   );
 };
