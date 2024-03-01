@@ -19,7 +19,9 @@ export const getUser: () => User | null = () => {
 };
 
 const useAuth = () => {
-  const [user, setUser] = useState<User | null>(getUser());
+  const [user, setUser] = useState<User | null>(() => {
+    return getUser();
+  });
 
   const fetch = () => {
     setUser(getUser());
