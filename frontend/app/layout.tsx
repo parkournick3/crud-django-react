@@ -16,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="dark" className="scroll-smooth">
-      <body className={inter.className + "bg-base-100 min-h-screen"}>
+      <body
+        className={
+          inter.className + "bg-base-100 min-h-screen container mx-auto"
+        }
+      >
         {children}
       </body>
     </html>

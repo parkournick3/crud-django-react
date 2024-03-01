@@ -12,7 +12,7 @@ const PostList = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4 py-4 px-2">
       {posts?.map((post: Post) => (
         <PostCard key={post.title + post.username + post.id} post={post} />
       ))}
