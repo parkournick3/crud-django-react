@@ -18,16 +18,18 @@ const PostList = () => {
         <PostCard key={post.title + post.username + post.id} post={post} />
       ))}
 
-      <button
-        disabled={isReachingEnd}
-        className={classNames(
-          "btn btn-primary",
-          isReachingEnd && "btn-disabled"
-        )}
-        onClick={loadMore}
-      >
-        Load more
-      </button>
+      {!isReachingEnd && (
+        <button
+          disabled={isReachingEnd}
+          className={classNames(
+            "btn btn-primary",
+            isReachingEnd && "btn-disabled"
+          )}
+          onClick={loadMore}
+        >
+          Load more
+        </button>
+      )}
     </div>
   );
 };
