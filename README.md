@@ -1,15 +1,19 @@
+# Try this
+
+- **backend**: https://codeleap-network-app.fly.dev/posts.json
+- **frontend**: https://crud-django-react-3sdq.vercel.app
 
 # How to run
 
-
 ## Backend
+
 ### Dependencies
 
 - python3
 - python virtualenv
 
 ```Bash
-  cd backend && . .venv/bin/activate && python manage.py runserver
+  cd backend && pip install && python manage.py runserver
 ```
 
 ## Frontend
