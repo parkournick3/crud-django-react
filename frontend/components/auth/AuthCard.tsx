@@ -91,16 +91,19 @@ const AuthCard = () => {
                 </button>
 
                 <button
-                  className={classNames(
-                    "btn btn-primary flex-1",
-                    !(isValid && dirty) && "btn-disabled"
-                  )}
-                  disabled={!(isValid && dirty)}
+                  className={classNames("btn btn-primary flex-1")}
                   onClick={() => {
                     signUp({
                       username: values.username,
                       password: values.password,
                     }).catch((_) => {
+                      if (values.username == "" || values.username == null) {
+                        setFieldError("username", "Fill in the username");
+                      }
+                      if (values.password == "" || values.password == null) {
+                        setFieldError("password", "Fill in the password");
+                        return;
+                      }
                       setFieldError("username", "Username already exists");
                     });
                   }}

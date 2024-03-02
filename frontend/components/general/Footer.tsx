@@ -8,7 +8,7 @@ const Footer = () => {
           href="https://github.com/parkournick3/crud-django-react"
           target="_blank"
         >
-          Github
+          Github Repository
         </a>
       </footer>
     </>
