@@ -5,7 +5,7 @@ import useSWRInfinite from "swr/infinite";
 import { useMemo } from "react";
 
 const usePosts = (id?: number) => {
-  const PAGE_SIZE = 6;
+  const PAGE_SIZE = 3;
 
   const { currentUser, loggedIn } = useAuth();
 
