@@ -30,7 +30,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
 
       <div className="card w-full max-w-xl bg-base-300 shadow-xl">
         <div className="card-body p-4">
-          <div className="bg-base-200 rounded-lg p-4 flex flex-row justify-between items-center">
+          <div className="bg-base-200 rounded-lg p-4 flex flex-row justify-between items-center max-sm:flex-col">
             <div>
               <div className="avatar placeholder flex items-center gap-2">
                 <div className="bg-neutral text-neutral-content rounded-full w-8">
@@ -41,12 +41,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
                 <p>@{post.username}</p>
               </div>
 
-              <h2 className="card-title">
-                {post.title}
-                {dayjs(post.created_datetime).diff(dayjs()) > -200_000 && (
-                  <div className="badge badge-secondary">NEW</div>
-                )}
-              </h2>
+              <h2 className="card-title break-all">{post.title}</h2>
             </div>
 
             {currentUser?.username == post.username && (
@@ -67,14 +62,20 @@ const PostCard: React.FC<Props> = ({ post }) => {
 
           <p className="w-full break-words px-4">{post.content}</p>
 
-          <p className="text-sm font-semibold px-4">
-            {dayjs(post.updated_datetime).format("YYYY/MM/DD HH:mm:ss") ===
-            dayjs(post.created_datetime).format("YYYY/MM/DD HH:mm:ss") ? (
-              <span>Created {dayjs(post.created_datetime).fromNow()}</span>
-            ) : (
-              <span>Updated {dayjs(post.updated_datetime).fromNow()}</span>
+          <div className="flex flex-row justify-between">
+            <p className="text-sm font-semibold px-4">
+              {dayjs(post.updated_datetime).format("YYYY/MM/DD HH:mm:ss") ===
+              dayjs(post.created_datetime).format("YYYY/MM/DD HH:mm:ss") ? (
+                <span>Created {dayjs(post.created_datetime).fromNow()}</span>
+              ) : (
+                <span>Updated {dayjs(post.updated_datetime).fromNow()}</span>
+              )}
+            </p>
+
+            {dayjs(post.created_datetime).diff(dayjs()) > -200_000 && (
+              <div className="badge badge-secondary break-normal">NEW</div>
             )}
-          </p>
+          </div>
         </div>
       </div>
     </>
