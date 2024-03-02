@@ -3,6 +3,9 @@
 - **backend**: https://codeleap-network-app.fly.dev/posts.json
 - **frontend**: https://crud-django-react-3sdq.vercel.app
 
+##Preview
+![image](https://github.com/parkournick3/crud-django-react/assets/131922314/49c8e3bd-9879-44b6-af02-392b300832d9)
+
 # How to run
 
 ## Backend
