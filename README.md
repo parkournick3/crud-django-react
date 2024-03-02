@@ -10,7 +10,6 @@
 ### Dependencies
 
 - python3
-- python virtualenv
 
 ```Bash
   cd backend && pip install && python manage.py runserver
