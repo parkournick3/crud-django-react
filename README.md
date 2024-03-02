@@ -17,6 +17,7 @@
 
 ## Frontend
 
+### Dependencies
 - nodejs 18
 - pnpm
 
