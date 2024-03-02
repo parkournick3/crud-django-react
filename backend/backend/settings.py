@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['.vercel.app', 'localhost']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://crud-django-react-one.vercel.app'
 ]
 
 SECRET_KEY = 'django-insecure-q1-xt8(+yr^6iye@sa3@miqn&(#-be96ild1s!o)wlmwqrzd3-'
