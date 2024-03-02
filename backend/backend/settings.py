@@ -27,7 +27,7 @@ ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev", "localhost"]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://crud-django-react-one.vercel.app'
+    'https://crud-django-react-3sdq.vercel.app'
 ]
 
 BASE_DIR = Path(__file__).resolve().parent.parent
