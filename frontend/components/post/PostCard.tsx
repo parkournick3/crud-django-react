@@ -17,7 +17,7 @@ type Props = {
 
 const PostCard: React.FC<Props> = ({ post }) => {
   const { deletePost } = usePosts(post.id);
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -49,7 +49,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
               </h2>
             </div>
 
-            {user?.username == post.username && (
+            {currentUser?.username == post.username && (
               <div className="flex flex-row gap-2">
                 <button className="btn btn-square" onClick={deletePost}>
                   <TrashIcon />

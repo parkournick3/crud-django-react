@@ -7,7 +7,7 @@ import { useMemo } from "react";
 const usePosts = (id?: number) => {
   const PAGE_SIZE = 6;
 
-  const { user, loggedIn } = useAuth();
+  const { currentUser, loggedIn } = useAuth();
 
   const {
     data: pages,
@@ -45,13 +45,15 @@ const usePosts = (id?: number) => {
 
   const createPost = (newData: Partial<Post>) => {
     if (loggedIn && !isLoading) {
-      api.post("/posts/", { ...newData, username: user?.username }).then(() => {
-        if (pages?.length) {
-          mutate([...pages, [newData]]);
-        } else {
-          mutate([[newData]]);
-        }
-      });
+      api
+        .post("/posts/", { ...newData, username: currentUser?.username })
+        .then(() => {
+          if (pages?.length) {
+            mutate([...pages, [newData]]);
+          } else {
+            mutate([[newData]]);
+          }
+        });
     }
   };
 

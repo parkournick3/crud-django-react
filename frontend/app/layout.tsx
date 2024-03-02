@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import GoToTop from "@/components/general/GoToTop";
+import Navbar from "@/components/general/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
           inter.className + "bg-base-100 min-h-screen container mx-auto px-4"
         }
       >
+        <Navbar />
         {children}
         <GoToTop />
       </body>

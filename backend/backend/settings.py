@@ -29,14 +29,16 @@ ALLOWED_HOSTS = ['.vercel.app', 'localhost']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    '*.vercel.app'
 ]
+
+SECRET_KEY = 'django-insecure-q1-xt8(+yr^6iye@sa3@miqn&(#-be96ild1s!o)wlmwqrzd3-'
 
 # Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
     'backend',
     'django.contrib.admin',
     'django.contrib.auth',

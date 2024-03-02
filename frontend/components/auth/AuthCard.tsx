@@ -1,6 +1,6 @@
-import { UserIcon } from "lucide-react";
+import { LockIcon, UserIcon, XIcon } from "lucide-react";
 import { Formik, Form, Field } from "formik";
-import useAuth, { createUser } from "@/hooks/useAuth";
+import useAuth, { signIn, signUp } from "@/hooks/useAuth";
 import classNames from "classnames";
 import { SignupSchema } from "@/validations/auth";
 
@@ -18,32 +18,96 @@ const AuthCard = () => {
         <p className="py-4">Please enter your username</p>
         <Formik
           validationSchema={SignupSchema}
-          initialValues={{ username: "" }}
-          onSubmit={(values, _actions) => {
-            createUser({ username: values.username });
-            window.location.href = "/";
-          }}
+          initialValues={{ username: "", password: "" }}
+          onSubmit={() => {}}
         >
-          {({ dirty, isValid }) => (
+          {({ dirty, isValid, errors, setFieldError, values }) => (
             <Form method="dialog" className="w-full flex flex-col gap-4">
-              <label className="input input-bordered flex items-center gap-2">
+              {Object.entries(errors).map(
+                ([key, value]) =>
+                  !!value &&
+                  value != "Required" && (
+                    <div
+                      key={key + value}
+                      role="alert"
+                      className="alert alert-error"
+                    >
+                      <XIcon />
+                      <span>{value}</span>
+                    </div>
+                  )
+              )}
+              <label
+                className={classNames(
+                  "input input-bordered flex items-center gap-2",
+                  errors.username != null && "input-error"
+                )}
+              >
                 <UserIcon />
                 <Field
                   type="text"
-                  className="grow"
+                  className={classNames("grow")}
                   placeholder="Username"
                   name="username"
                 />
               </label>
-              <button
+              <label
                 className={classNames(
-                  "btn",
-                  !(isValid && dirty) && "btn-disabled"
+                  "input input-bordered flex items-center gap-2",
+                  errors.password != null &&
+                    errors.password != "Required" &&
+                    "input-error"
                 )}
-                disabled={!(isValid && dirty)}
               >
-                Save
-              </button>
+                <LockIcon />
+                <Field
+                  type="password"
+                  className={classNames("grow")}
+                  placeholder="Password"
+                  name="password"
+                />
+              </label>
+              <div className="flex flex-row gap-2 py-2">
+                <button
+                  className={classNames(
+                    "btn flex-1",
+                    !(isValid && dirty) && "btn-disabled"
+                  )}
+                  onClick={() => {
+                    signIn({
+                      username: values.username,
+                      password: values.password,
+                    }).catch((err) => {
+                      setFieldError(
+                        "username",
+                        "Username or password is incorrect"
+                      );
+                      setFieldError("password", "");
+                    });
+                  }}
+                  disabled={!(isValid && dirty)}
+                >
+                  Sign in
+                </button>
+
+                <button
+                  className={classNames(
+                    "btn btn-primary flex-1",
+                    !(isValid && dirty) && "btn-disabled"
+                  )}
+                  disabled={!(isValid && dirty)}
+                  onClick={() => {
+                    signUp({
+                      username: values.username,
+                      password: values.password,
+                    }).catch((_) => {
+                      setFieldError("username", "Username already exists");
+                    });
+                  }}
+                >
+                  Sign up
+                </button>
+              </div>
             </Form>
           )}
         </Formik>

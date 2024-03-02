@@ -23,6 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', views.post_list),
     path('posts/<int:id>', views.post_detail),
+    path('signup/', views.signup),
+    path('login/', views.login),
+    path('current_user/', views.current_user),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
