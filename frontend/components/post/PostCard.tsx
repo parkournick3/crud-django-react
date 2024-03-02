@@ -30,7 +30,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
 
       <div className="card w-full max-w-xl bg-base-300 shadow-xl">
         <div className="card-body p-4">
-          <div className="bg-base-200 rounded-lg p-4 flex flex-row justify-between items-center max-sm:flex-col">
+          <div className="bg-base-200 rounded-lg p-4 flex flex-row justify-between items-center">
             <div>
               <div className="avatar placeholder flex items-center gap-2">
                 <div className="bg-neutral text-neutral-content rounded-full w-8">
@@ -45,7 +45,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
             </div>
 
             {currentUser?.username == post.username && (
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 max-sm:flex-col-reverse">
                 <button className="btn btn-square" onClick={deletePost}>
                   <TrashIcon />
                 </button>
